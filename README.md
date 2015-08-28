@@ -1,7 +1,9 @@
-ACD_SZ - Configurable Spawn & Trade zones
-============
+ACD_SZ
+======
+Configurable Spawn & Trade zones
+================================
 for Arma 3 @Exile mod
-by d4n1ch [mailto:d.e@acd.su]
+by [d4n1ch](mailto:d.e@acd.su)
 ================================
 ACD_SZ Version
 --------------
