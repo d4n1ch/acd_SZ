@@ -31,6 +31,7 @@ INSTALLATION:
 * 1) Copy all files inside your Exile.Altis mission pbo overwriting existing
 * 2) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
 * 3) profit
+
 #### ADD-IN:
 * 1) Copy acd_SZ folder inside your Exile.Altis mission pbo
 * 2) Remove default sensors and markers by deleting those sections from mission.sqm
