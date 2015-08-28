@@ -1,9 +1,9 @@
 ACD_SZ by [d4n1ch](mailto:d.e@acd.su)
 =====================================
 Configurable Spawn & Trade zones
-================================
+--------------------------------
 for Arma 3 @Exile mod
-=====================
+---------------------
 
 ACD_SZ Version
 --------------
@@ -37,7 +37,7 @@ INSTALLATION:
 ```java
 class Sensors {};
 class Markers {};
-
+```
 * 3) Edit init.sqf 
 ```java
 //Add line
@@ -45,14 +45,14 @@ class Markers {};
 ```
 * 4) Edit initPlayerLocal.sqf
 ```java
-//Remove default "Static Objects" below line:
+//Remove default traders below line:
 if (!hasInterface || isServer) exitWith {};
 //Add line to the end of file
 #include "acd_SZ\acd_SZ_load_traders.sqf"
 ```
 * 5) Edit initServer.sqf
 ```java
-//Remove Static Objects below line
+//Remove default props 
 //Add line to the end of file
 #include "acd_SZ\acd_SZ_load_props.sqf"
 ```
