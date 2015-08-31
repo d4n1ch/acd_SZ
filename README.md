@@ -7,15 +7,26 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.1
+* 0.4
 
 @Exile Version
 ---------------
-* 0.9.18
+* 0.9.19
 
 TODO:
 -----
   - Place more props
+  - Add more traders to new default zones
+  
+Changelog:
+----------
+
+* Server side addon created to initialize config before `ExileServer_object_vehicle_database_load.sqf` executed
+* Added 2 new default trader zones to make them configurable
+* Added configurable option to unlock vehicles inside safe zone upon restart
+* Added configurable option to disable lifting for locked vehicles
+* Added configurable option to repair vehicles upon restart
+* Added configurable option to refuel vehicles upon restart
 
 Tech
 ----
@@ -28,33 +39,58 @@ This release uses @Exile project to work:
 INSTALLATION:
 ----
 #### CLEAN:
-* 1) Copy all files inside your Exile.Altis mission pbo overwriting existing
-* 2) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
-* 3) profit
+* 1) Copy `acd_sz.pbo` to exile server addon folder `@ExileServer\addons`
+* 2) Copy all files from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo overwriting existing
+* 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo and add row: `ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";`
+* 4) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
+* 5) profit
+
+Notice
+------
+Listed files should look like this:
+`init.sqf`
+```
+#include "custom\acd_SZ\acd_SZ_config.sqf"
+```
+
+`initServer.sqf`
+```
+#include "custom\acd_SZ\acd_SZ_load_props.sqf"
+```
+
+`initPlayerLocal.sqf`
+```
+#include "initServer.sqf"
+if (!hasInterface || isServer) exitWith {};
+#include "custom\acd_SZ\acd_SZ_load_traders.sqf"
+```
 
 #### ADD-IN:
-* 1) Copy acd_SZ folder inside your Exile.Altis mission pbo
-* 2) Remove default sensors and markers by deleting those sections from mission.sqm
+* 1) Copy `acd_sz.pbo` to exile server addon folder `@ExileServer\addons`
+* 2) Copy folders `custom` and `overwrites` from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo
+* 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo and add row: `ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";`
+* 4) Remove default sensors and markers by deleting those sections from mission.sqm
 ```java
 class Sensors {};
 class Markers {};
 ```
-* 3) Edit init.sqf 
+* 5) Edit init.sqf 
 ```java
 //Add line
 #include "acd_SZ\acd_SZ_config.sqf"
 ```
-* 4) Edit initPlayerLocal.sqf
+* 6) Edit initPlayerLocal.sqf
 ```java
 //Remove default traders below line:
 if (!hasInterface || isServer) exitWith {};
 //Add line to the end of file
 #include "acd_SZ\acd_SZ_load_traders.sqf"
 ```
-* 5) Edit initServer.sqf
+* 7) Edit initServer.sqf
 ```java
 //Remove default props 
 //Add line to the end of file
 #include "acd_SZ\acd_SZ_load_props.sqf"
 ```
-* 6) profit
+
+* 8) profit
