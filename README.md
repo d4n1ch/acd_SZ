@@ -42,6 +42,15 @@ INSTALLATION:
 * 1) Copy `acd_sz.pbo` to exile server addon folder `@ExileServer\addons`
 * 2) Copy all files from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo overwriting existing
 * 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo and add row: `ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";`
+`Example`
+
+```
+class CfgExileCustomCode 
+{
+	ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";
+};
+```
+
 * 4) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
 * 5) profit
 
