@@ -474,20 +474,6 @@ class FillEmptyPlasticBottleWithDirtyWater: Exile_AbstractCraftingRecipe
 		{1, "Exile_Item_PlasticBottleEmpty"}
 	};
 };
-class FillEmptyPlasticBottleWithFreshWater: Exile_AbstractCraftingRecipe
-{
-	name = "Fill Fresh Water";
-	pictureItem = "Exile_Item_PlasticBottleFreshWater";
-	requiredInteractionModelGroup = "CleanWaterSource";
-	returnedItems[] =
-	{
-		{1, "Exile_Item_PlasticBottleFreshWater"}
-	};
-	components[] = 
-	{
-		{1, "Exile_Item_PlasticBottleEmpty"}
-	};
-};
 class FillEmptyPlasticBottleWithSaltWater: Exile_AbstractCraftingRecipe
 {
 	name = "Fill Salt Water";
@@ -950,11 +936,11 @@ class CfgExileArsenal
 	class optic_LRPS								{ quality = 2; price = 300; };
 	class optic_MRCO								{ quality = 1; price = 100; };
 	class optic_MRD									{ quality = 1; price = 10; };
-	class optic_Nightstalker						{ quality = 3; price = 1000; };
+	//class optic_Nightstalker						{ quality = 3; price = 1000; };
 	class optic_NVS									{ quality = 2; price = 500; };
 	class optic_SOS									{ quality = 2; price = 200; };
-	class optic_tws									{ quality = 3; price = 1500; };
-	class optic_tws_mg								{ quality = 3; price = 1500; };
+	//class optic_tws									{ quality = 3; price = 1500; };
+	//class optic_tws_mg								{ quality = 3; price = 1500; };
 	class optic_Yorris								{ quality = 1; price = 10; };
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -986,7 +972,6 @@ class CfgExileArsenal
 	// Drinks
 	///////////////////////////////////////////////////////////////////////////////
 	class Exile_Item_PlasticBottleFreshWater 		{ quality = 2; price = 40; };
-	class Exile_Item_PlasticBottleEmpty				{ quality = 1; price = 4; };
 	class Exile_Item_Beer 							{ quality = 1; price = 50; };
 	class Exile_Item_Energydrink					{ quality = 1; price = 70; };
 
@@ -1008,9 +993,9 @@ class CfgExileArsenal
 	class ItemRadio									{ quality = 1; price = 40; };
 	class Binocular									{ quality = 1; price = 40; };
 	class Rangefinder								{ quality = 2; price = 200; };
-	class Laserdesignator							{ quality = 3; price = 750; };
-	class Laserdesignator_02						{ quality = 3; price = 750; };
-	class Laserdesignator_03						{ quality = 3; price = 750; };
+	//class Laserdesignator							{ quality = 3; price = 750; };
+	//class Laserdesignator_02						{ quality = 3; price = 750; };
+	//class Laserdesignator_03						{ quality = 3; price = 750; };
 	class NVGoggles									{ quality = 2; price = 100; };
 	class NVGoggles_INDEP							{ quality = 2; price = 100; };
 	class NVGoggles_OPFOR							{ quality = 2; price = 100; };
@@ -1089,10 +1074,9 @@ class CfgExileArsenal
 	class 100Rnd_65x39_caseless_mag_Tracer 			{ quality = 2; price = 40; };
 	class 10Rnd_127x54_Mag 							{ quality = 1; price = 30; };
 	// Broken in Arma
-	class 10Rnd_338_Mag 							{ quality = 1; price = 30; };
-
-	class 10Rnd_762x54_Mag 							{ quality = 1; price = 30; };
-	//class 10Rnd_762x51_Mag 							{ quality = 1; price = 30; };
+	//class 10Rnd_338_Mag 							{ quality = 1; price = 30; };
+	class 10Rnd_762x55_Mag 							{ quality = 1; price = 30; };
+	class 10Rnd_762x51_Mag 							{ quality = 1; price = 30; };
 	class 10Rnd_93x64_DMR_05_Mag 					{ quality = 1; price = 40; };
 	class 11Rnd_45ACP_Mag 							{ quality = 1; price = 8; };
 	class 150Rnd_762x54_Box 						{ quality = 1; price = 20; };
@@ -1278,6 +1262,7 @@ class CfgExileArsenal
 	///////////////////////////////////////////////////////////////////////////////
 	class Exile_Bike_OldBike 						{ quality = 1; price = 40; };
 	class Exile_Bike_MountainBike 					{ quality = 1; price = 50; };
+	class Exile_Bike_Crosser 						{ quality = 1; price = 500; };
 
 	///////////////////////////////////////////////////////////////////////////////
 	// QUAD BIKES
@@ -1291,19 +1276,6 @@ class CfgExileArsenal
 	class Exile_Bike_QuadBike_Fia					{ quality = 1; price = 500; };
 	class Exile_Bike_QuadBike_Guerilla01			{ quality = 1; price = 500; };
 	class Exile_Bike_QuadBike_Guerilla02			{ quality = 1; price = 500; };
-
-	///////////////////////////////////////////////////////////////////////////////
-	// KARTS
-	///////////////////////////////////////////////////////////////////////////////
-	class Exile_Car_Kart_BluKing					{ quality = 1; price = 400; };
-	class Exile_Car_Kart_RedStone					{ quality = 1; price = 400; };
-	class Exile_Car_Kart_Vrana						{ quality = 1; price = 400; };
-	class Exile_Car_Kart_Green						{ quality = 1; price = 400; };
-	class Exile_Car_Kart_Blue						{ quality = 1; price = 400; };
-	class Exile_Car_Kart_Orange						{ quality = 1; price = 400; };
-	class Exile_Car_Kart_White						{ quality = 1; price = 400; };
-	class Exile_Car_Kart_Yellow						{ quality = 1; price = 400; };
-	class Exile_Car_Kart_Black						{ quality = 1; price = 400; };
 
 	///////////////////////////////////////////////////////////////////////////////
 	// MOTOR BOATS
@@ -1324,9 +1296,9 @@ class CfgExileArsenal
 	///////////////////////////////////////////////////////////////////////////////
 	// SDV
 	///////////////////////////////////////////////////////////////////////////////
-	class Exile_Boat_SDV_CSAT						{ quality = 1; price = 1000; };
-	class Exile_Boat_SDV_Digital					{ quality = 1; price = 1000; };
-	class Exile_Boat_SDV_Grey						{ quality = 1; price = 1000; };
+	class Exile_Boat_SDV_CSAT						{ quality = 1; price = 500; };
+	class Exile_Boat_SDV_Digital					{ quality = 1; price = 500; };
+	class Exile_Boat_SDV_Grey						{ quality = 1; price = 500; };
 
 	///////////////////////////////////////////////////////////////////////////////
 	// Hellcat
@@ -1582,10 +1554,29 @@ class CfgFlags
 		uid = "";
 	};
 };
+class CfgMaintenance
+{
+	cost[] = 
+	{
+		5000, // Level 1
+		10000, // Level 2 
+		15000, // Level 3
+		20000, // Level 4
+		25000, // Level 5
+		30000, // Level 6
+		35000, // Level 7
+		40000, // Level 8
+		45000, // Level 9
+		50000  // Level 10
+	};
+
+	period = 30;
+};
 class CfgTerritories
 {
-	// Base Cost / Radius
-	// Level 1 is allways for Pop Tabs, >= 2 for Respect
+	// Base Cost / radius
+	// Level 1 is allways for PoPtabs , >= 2 for Respect
+
 	prices[] = 
 	{
 		{5000,	15}, // Level 1
@@ -1605,28 +1596,9 @@ class CfgTerritories
 		"Exile_Construction_CampFire_Preview",
 		"Exile_Construction_CamoTent_Preview"
 	};
-
-	// Defines the period in days where protection money needs to be payed.
-	// Every time you pay the protection money, the "due date" will be
-	// pro-longed by that period too.
-	protectionPeriod = 21; 
-
-	// Amount of pop tabs or respect per object to pay
-	popTabAmountPerObject = 10;
-	respectAmountPerObject = 5;
 };
 class CfgTraderCategories 
 {
-	class Community
-	{
-		name = "Community Items";
-		icon = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\uniform_ca.paa";
-		items[] = 
-		{
-			// Add your items here <3
-		};
-	};
-
 	class Uniforms
 	{
 		name = "Uniforms";
@@ -1966,11 +1938,11 @@ class CfgTraderCategories
 			"optic_LRPS",
 			"optic_MRCO",
 			"optic_MRD",
-			"optic_Nightstalker",
+			//"optic_Nightstalker",
 			"optic_NVS",
 			"optic_SOS",
-			"optic_tws",
-			"optic_tws_mg",
+			//"optic_tws",
+			//"optic_tws_mg",
 			"optic_Yorris"
 		};
 	};
@@ -2032,9 +2004,9 @@ class CfgTraderCategories
 			"Exile_Item_CookingPot",
 			"Binocular",
 			"Rangefinder",
-			"Laserdesignator",
-			"Laserdesignator_02",
-			"Laserdesignator_03",
+			//"Laserdesignator",
+			//"Laserdesignator_02",
+			//"Laserdesignator_03",
 			"NVGoggles",
 			"NVGoggles_INDEP",
 			"NVGoggles_OPFOR",
@@ -2348,7 +2320,8 @@ class CfgTraderCategories
 		items[] = 
 		{
 			"Exile_Bike_OldBike",
-			"Exile_Bike_MountainBike"
+			"Exile_Bike_MountainBike",
+			"Exile_Bike_QuadBike_Black"	
 		};
 	};
 
@@ -2358,8 +2331,6 @@ class CfgTraderCategories
 		icon = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\itemacc_ca.paa";
 		items[] = 
 		{
-			"Exile_Car_Kart_Black",
-			"Exile_Bike_QuadBike_Black",
 			"Exile_Car_Hatchback_Rusty1",
 			"Exile_Car_Hatchback_Rusty2",
 			"Exile_Car_Hatchback_Rusty3",
@@ -2415,17 +2386,7 @@ class CfgTraderCategories
 		icon = "a3\ui_f\data\gui\Rsc\RscDisplayArsenal\itemacc_ca.paa";
 		items[] = 
 		{
-			"Exile_Boat_RubberDuck_CSAT",
-			"Exile_Boat_RubberDuck_Digital",
-			"Exile_Boat_RubberDuck_Orange",
-			"Exile_Boat_RubberDuck_Blue",
-			"Exile_Boat_RubberDuck_Black",
-			"Exile_Boat_MotorBoat_Police",
-			"Exile_Boat_MotorBoat_Orange",
-			"Exile_Boat_MotorBoat_White",
-			"Exile_Boat_SDV_CSAT",
-			"Exile_Boat_SDV_Digital",
-			"Exile_Boat_SDV_Grey"
+			"Exile_Boat_RubberDuck_Orange"
 		};
 	};
 
@@ -2556,7 +2517,7 @@ class CfgTraders
 	};
 
 	/**
-	 * Sells ships and boats
+	 * Salles ships and boats
 	 */ 
 	class Exile_Trader_Boat
 	{
@@ -2567,20 +2528,6 @@ class CfgTraders
 			"Boats"
 		};
 	};
-
-	/**
-	 * Sells Community Items
-	 */ 
-	class Exile_Trader_CommunityCustoms
-	{
-		name = "COMMUNITY";
-		showWeaponFilter = 0;
-		categories[] = 
-		{
-			"Community"
-		};
-	};
-
 };
 class CfgVehicleCustoms
 {
@@ -2653,25 +2600,6 @@ class CfgVehicleCustoms
 		{
 			{"Exile_Chopper_Hellcat_Green", 350},
 			{"Exile_Chopper_Hellcat_FIA", 	500}
-		};
-	};
-
-	///////////////////////////////////////////////////////////////////////////////
-	// Karts
-	///////////////////////////////////////////////////////////////////////////////
-	class Exile_Car_Kart_Abstract
-	{
-		skins[] = 
-		{
-			{"Exile_Car_Kart_BluKing", 				100},	
-			{"Exile_Car_Kart_RedStone", 			100},
-			{"Exile_Car_Kart_Vrana", 				100},	
-			{"Exile_Car_Kart_Green", 				100},	
-			{"Exile_Car_Kart_Blue", 				100},	
-			{"Exile_Car_Kart_Orange", 				100},	
-			{"Exile_Car_Kart_White", 				100},	
-			{"Exile_Car_Kart_Yellow", 				100},	
-			{"Exile_Car_Kart_Black", 				100}	
 		};
 	};
 
