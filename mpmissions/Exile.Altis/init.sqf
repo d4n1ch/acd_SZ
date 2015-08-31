@@ -1,1 +1,1 @@
-#include "acd_SZ\acd_SZ_config.sqf"
+#include "custom\acd_SZ\acd_SZ_config.sqf"
