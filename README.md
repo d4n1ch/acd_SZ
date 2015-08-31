@@ -39,12 +39,11 @@ This release uses @Exile project to work:
 INSTALLATION:
 ----
 #### CLEAN:
-<<<<<<< HEAD
-<<<<<<< HEAD
 * 1) Copy `acd_sz.pbo` to exile server addon folder `@ExileServer\addons`
 * 2) Copy all files from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo overwriting existing
 * 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo and add row: `ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";`
-`Example`
+
+#### Example
 
 ```
 class CfgExileCustomCode 
@@ -53,21 +52,13 @@ class CfgExileCustomCode
 };
 ```
 
-=======
-* 1) Copy `acd_sz.pbo` to exile server addon folder `@ExileServer\addons`
-* 2) Copy all files from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo overwriting existing
-* 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo and add row: `ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";`
->>>>>>> parent of e083a4f... Revert "version-0.4"
 * 4) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
 * 5) profit
 
 Notice
 ------
 Listed files should look like this:
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of e083a4f... Revert "version-0.4"
 `init.sqf`
 ```
 #include "custom\acd_SZ\acd_SZ_config.sqf"
@@ -84,14 +75,6 @@ Listed files should look like this:
 if (!hasInterface || isServer) exitWith {};
 #include "custom\acd_SZ\acd_SZ_load_traders.sqf"
 ```
-<<<<<<< HEAD
-=======
-* 1) Copy all files inside your Exile.Altis mission pbo overwriting existing
-* 2) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
-* 3) profit
->>>>>>> parent of 3b11441... version-0.4
-=======
->>>>>>> parent of e083a4f... Revert "version-0.4"
 
 #### ADD-IN:
 * 1) Copy `acd_sz.pbo` to exile server addon folder `@ExileServer\addons`
