@@ -57,52 +57,6 @@ if (acd_SZ_SOUTH_Eginio_Office_Trader) then {
 if (acd_SZ_SOUTH_Eginio_Waste_Dump_Trader) then {
 	_objs = _objs + [["Exile_Sign_WasteDump",[11525.8,7073.63,0.251976],271.364,[[-0.999717,0.0237981,0],[0,0,1]],false]];
 };
-{
-	private ["_obj"];
-	if (acd_debug) then {
-	diag_log format ["### _x = %1 ###",_x];
-	};
-	_obj = (_x select 0) createVehicleLocal [0,0,0];
-	if (_x select 4) then {
-		_obj setDir (_x select 2);
-		_obj setPos (_x select 1);
-	} else {
-		_obj setPosATL (_x select 1);
-		_obj setVectorDirAndUp (_x select 3);
-	};
-	_obj enableSimulation false;
-	if (acd_debug) then {
-	diag_log format ["### _obj = %1 ###",_obj];
-	};
-} foreach _objs;
 
-if (acd_SZ_SOUTH_Eginio_IS_SAFE) then {
-/*
-	SZ Marker
-*/
-acd_SZ_SOUTH_Eginio_marker = createMarker ["South_Eginio_TraderCityMarker", [11557,7047.75,0.101646]];
-"South_Eginio_TraderCityMarker" setMarkerShape "ELLIPSE";
-"South_Eginio_TraderCityMarker" setMarkerSize [200,200];
-"South_Eginio_TraderCityMarker" setMarkerColor "ColorBlue";
-"South_Eginio_TraderCityMarker" setMarkerBrush "SolidBorder";
-"South_Eginio_TraderCityMarker" setMarkerAlpha 1;
-"South_Eginio_TraderCityMarker" setMarkerText "BmGJ Trader City";
-/*
-	SZ Sensor
-*/
-ExileTrader = createTrigger ["EmptyDetector",[11557,7047.75,0.101646]];
-ExileTrader setTriggerArea [300,300,0,true];
-ExileTrader setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
-ExileTrader setTriggerActivation ["ANY","PRESENT",true];
-} else {
-/*
-	Trading Outpost Marker
-*/
-acd_SZ_SOUTH_Eginio_marker = createMarker ["South_Eginio_TraderCityMarker",[11557,7047.75,0.101646]];
-"South_Eginio_TraderCityMarker" setMarkerShape "ICON";
-"South_Eginio_TraderCityMarker" setMarkerType "MinefieldAP";
-"South_Eginio_TraderCityMarker" setMarkerSize [0.60000002,0.60000002];
-"South_Eginio_TraderCityMarker" setMarkerColor "ColorBlack";
-"South_Eginio_TraderCityMarker" setMarkerText "Black market";	
-};
+[_objs] call acd_fnc_buildProps;
 

@@ -63,50 +63,5 @@ if (acd_SZ_SOUTH_EAST_Selekano_Vehicle_Trader) then {
 if (acd_SZ_SOUTH_EAST_Selekano_Vehicle_Customs_Trader) then {
 	_objs = _objs + [["Exile_Sign_VehicleCustoms",[20819.7,7208.93,0.254492],142.727,[[0.60561,-0.795762,0],[0,-0,1]],false]];
 };
-{
-	private ["_obj"];
-	if (acd_debug) then {
-	diag_log format ["### _x = %1 ###",_x];
-	};
-	_obj = (_x select 0) createVehicleLocal [0,0,0];
-	if (_x select 4) then {
-		_obj setDir (_x select 2);
-		_obj setPos (_x select 1);
-	} else {
-		_obj setPosATL (_x select 1);
-		_obj setVectorDirAndUp (_x select 3);
-	};
-	_obj enableSimulation false;
-	if (acd_debug) then {
-	diag_log format ["### _obj = %1 ###",_obj];
-	};
-} foreach _objs;
-if (acd_SZ_SOUTH_EAST_Selekano_IS_SAFE) then {
-/*
-	SZ Marker
-*/
-acd_SZ_SOUTH_EAST_Selekano_marker = createMarker ["South_east_TraderCityMarker", [20886.4,7271.56,0.00141907]];
-"South_east_TraderCityMarker" setMarkerShape "ELLIPSE";
-"South_east_TraderCityMarker" setMarkerSize [200,200];
-"South_east_TraderCityMarker" setMarkerColor "ColorBlue";
-"South_east_TraderCityMarker" setMarkerBrush "SolidBorder";
-"South_east_TraderCityMarker" setMarkerAlpha 1;
-"South_east_TraderCityMarker" setMarkerText "BmGJ Trader City";
-/*
-	SZ Sensor
-*/
-ExileTrader = createTrigger ["EmptyDetector",[20937.424,7369.8242,24.977497]];
-ExileTrader setTriggerArea [220,300,11,true];
-ExileTrader setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
-ExileTrader setTriggerActivation ["ANY","PRESENT",true];
-} else {
-/*
-	Trading Outpost Marker
-*/
-acd_SZ_SOUTH_EAST_Selekano_marker = createMarker ["South_east_TraderCityMarker",[20886.4,7271.56,0.00141907]];
-"South_east_TraderCityMarker" setMarkerShape "ICON";
-"South_east_TraderCityMarker" setMarkerType "MinefieldAP";
-"South_east_TraderCityMarker" setMarkerSize [0.60000002,0.60000002];
-"South_east_TraderCityMarker" setMarkerColor "ColorBlack";
-"South_east_TraderCityMarker" setMarkerText "Black market";	
-};
+
+[_objs] call acd_fnc_buildProps;

@@ -77,6 +77,7 @@ acd_SZ_NORTH_Krya_Nera = true;
 acd_SZ_NORTH_Krya_Nera_IS_SAFE = true;
 acd_SZ_NORTH_Krya_Nera_position = [9192.48,21519.3,16.9193]; /* DO NOT EDIT (you will break things)*/
 acd_SZ_NORTH_Krya_Nera_triggerArea = [220,300,55,true]; /* DO NOT EDIT (you will break things)*/
+acd_SZ_NORTH_Krya_Nera_air_vehicle_pos_arr = [[9181.29,21596.4,0.00160122],[9132.18,21586.9,0.00144958],[9087.26,21541.2,0.00137997],[9053.65,21505.8,0.00144196],[9015.19,21425.1,0.00139236],[9016.35,21390.7,0.00144005],[9067.79,21422.4,0.0014267],[9125.06,21462.7,0.00143623]];
 /*####################################################################################################################################*/
 	acd_SZ_NORTH_Krya_Nera_Hardware_Trader = true;
 	acd_SZ_NORTH_Krya_Nera_Fast_Food_Trader = true;
@@ -96,6 +97,7 @@ acd_SZ_NORTH_EAST_Molos = true;
 acd_SZ_NORTH_EAST_Molos_IS_SAFE = true;
 acd_SZ_NORTH_EAST_Molos_position = [26833.49,24850.111,21.780668]; /* DO NOT EDIT (you will break things)*/
 acd_SZ_NORTH_EAST_Molos_triggerArea = [220,300,11,true]; /* DO NOT EDIT (you will break things)*/
+acd_SZ_NORTH_EAST_Molos_air_vehicle_pos_arr = [[26851.6,24560.3,0.00139999],[26901.2,24618.7,0.00161171],[26973.1,24699.2,0.00145149],[27053.6,24785.6,0.00141907]];
 /*#####################################################################################################################################*/
 	acd_SZ_NORTH_EAST_Molos_Hardware_Trader = true;
 	acd_SZ_NORTH_EAST_Molos_Fast_Food_Trader = true;
@@ -108,8 +110,8 @@ acd_SZ_NORTH_EAST_Molos_triggerArea = [220,300,11,true]; /* DO NOT EDIT (you wil
 	acd_SZ_NORTH_EAST_Molos_Aircraft_Customs_Trader = true;
 	acd_SZ_NORTH_EAST_Molos_Vehicle_Trader = true;
 	acd_SZ_NORTH_EAST_Molos_Vehicle_Customs_Trader = true;
-	acd_SZ_NORTH_EAST_Molos_Boat_Trader = true; /* (Boat traders are fucked at this moment) */
-	acd_SZ_NORTH_EAST_Molos_Boat_Customs_Trader = false; /* (Boat traders are fucked at this moment) */
+	acd_SZ_NORTH_EAST_Molos_Boat_Trader = true; /* (Boat traders are working) */
+	acd_SZ_NORTH_EAST_Molos_Boat_Customs_Trader = false; /* (Boat Customs traders are disabled in BANANA release) */
 /*#######################################################################################################################################
  SOUTH EAST AIRFIELD SAFE ZONE
 #######################################################################################################################################*/
@@ -117,6 +119,7 @@ acd_SZ_SOUTH_EAST_Selekano = true;
 acd_SZ_SOUTH_EAST_Selekano_IS_SAFE = true;
 acd_SZ_SOUTH_EAST_Selekano_position = [20937.424,7369.8242,24.977497]; /* DO NOT EDIT (you will break things)*/
 acd_SZ_SOUTH_EAST_Selekano_triggerArea = [220,300,11,true]; /* DO NOT EDIT (you will break things)*/
+acd_SZ_SOUTH_EAST_Selekano_air_vehicle_pos_arr = [[20800.9,7229.98,0.00149727],[20957.2,7338.23,0.00144577],[20937.7,7215.34,0.00156593],[21033.3,7419.06,0.00136566],[21148.5,7531.43,0.00145912],[21166.7,7564.39,0.00141144],[21147.3,7462.79,0.00142288],[21125.9,7358.03,0.00143623]];
 /*#####################################################################################################################################*/
 	acd_SZ_SOUTH_EAST_Selekano_Hardware_Trader = true;
 	acd_SZ_SOUTH_EAST_Selekano_Fast_Food_Trader = true;
@@ -178,6 +181,7 @@ acd_SZ_EAST_Almyra = true;
 acd_SZ_EAST_Almyra_IS_SAFE = false;
 acd_SZ_EAST_Almyra_position = [23157.5,18726.7,0.00143886]; /* DO NOT EDIT (you will break things)*/
 acd_SZ_EAST_Almyra_triggerArea = [300,300,55,true]; /* DO NOT EDIT (you will break things)*/
+acd_SZ_EAST_Almyra_air_vehicle_pos_arr = [[23148.4,18730,0.00143886],[23164.7,18824.9,0.00143886],[23224.5,18820.3,0.00143886],[23265.8,18792.1,0.00143886],[23254.3,18718.2,0.00143886],[23237,18682.2,0.00143886],[23206.4,18619.7,0.00143886],[23167.1,18627.3,0.00143886],[23118.2,18662.1,0.00143886],[23127.4,18701,0.00143886]];
 /*#####################################################################################################################################*/
 	acd_SZ_EAST_Almyra_Hardware_Trader = true;
 	acd_SZ_EAST_Almyra_Fast_Food_Trader = true;
@@ -203,9 +207,20 @@ if (acd_debug) then {
 };
 /*#####################################################################################################################################*/
 diag_log format ["### ACD: acd_sz_config.sqf: configuration successfully loaded ###"];
-acd_preInit_1 = [] execVM "custom\acd_SZ\acd_SZ_IsNotParkingLot.sqf";
-waitUntil {
-    scriptDone acd_preInit_1
-};
+if(isNil("acd_fnc_enabled_sz_list"))then{acd_fnc_enabled_sz_list = compile preprocessFile "custom\acd_sz\functions\acd_fnc_enabled_sz_list.sqf";};
+if(isNil("acd_fnc_sz_data"))then{acd_fnc_sz_data = compile preprocessFile "custom\acd_sz\functions\acd_fnc_sz_data.sqf";};
+if(isNil("acd_fnc_requestPlayerPositionInSZ"))then{acd_fnc_requestPlayerPositionInSZ = compile preprocessFile "custom\acd_sz\functions\acd_fnc_requestPlayerPositionInSZ.sqf";};
+if(isNil("acd_fnc_findSafeVehiclePos"))then{acd_fnc_findSafeVehiclePos = compile preprocessFile "custom\acd_sz\functions\acd_fnc_findSafeVehiclePos.sqf";};
+if(isNil("acd_fnc_buildTerminal"))then{acd_fnc_buildTerminal = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildTerminal.sqf";};
+if(isNil("acd_fnc_createSensorsAndMarkers"))then{acd_fnc_createSensorsAndMarkers = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createSensorsAndMarkers.sqf";};
+if(isNil("acd_fnc_buildProps"))then{acd_fnc_buildProps = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildProps.sqf";};
+if(isNil("acd_fnc_buildPropsDefault"))then{acd_fnc_buildPropsDefault = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildPropsDefault.sqf";};
+if(isNil("acd_fnc_precompileProps"))then{acd_fnc_precompileProps = compile preprocessFile "custom\acd_sz\functions\acd_fnc_precompileProps.sqf";};
+if(isNil("acd_fnc_precompileTraders"))then{acd_fnc_precompileTraders = compile preprocessFile "custom\acd_sz\functions\acd_fnc_precompileTraders.sqf";};
+if(isNil("exileserverislocked"))then{exileserverislocked = false;};
+/*#####################################################################################################################################*/
+call acd_fnc_enabled_sz_list;
+call acd_fnc_sz_data;
+call acd_fnc_createSensorsAndMarkers;
 acd_sz_config_loaded = true;
 #include "acd_SPAWN_config.sqf"

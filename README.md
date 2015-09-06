@@ -7,11 +7,11 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.4
+* 0.4.3
 
 @Exile Version
 ---------------
-* 0.9.19
+* 0.9.19 "BANANA"
 
 TODO:
 -----
@@ -20,13 +20,20 @@ TODO:
   
 Changelog:
 ----------
-
+### 0.4
 * Server side addon created to initialize config before `ExileServer_object_vehicle_database_load.sqf` executed
 * Added 2 new default trader zones to make them configurable
 * Added configurable option to unlock vehicles inside safe zone upon restart
 * Added configurable option to disable lifting for locked vehicles
 * Added configurable option to repair vehicles upon restart
 * Added configurable option to refuel vehicles upon restart
+
+### 0.4.3
+* Server side addon removed
+* Directory structure changed
+* New functions implemented 
+* ExileServer code overwrite ExileServer_system_trading_network_purchaseVehicleRequest.sqf added to fix "Failed to purchase vehicle: 13" when purchasing air vehicle
+* Ability to configure up to 5 custom SPAWN locations
 
 Tech
 ----
@@ -39,21 +46,17 @@ This release uses @Exile project to work:
 INSTALLATION:
 ----
 #### CLEAN:
-* 1) Copy `acd_sz.pbo` to exile server addon folder `@ExileServer\addons`
-* 2) Copy all files from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo overwriting existing
-* 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo and add row: `ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";`
-
-#### Example
-
-```
+* 1) Copy folders `custom` and `overwrites` from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo
+* 2) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo to look like this: 
+```java
 class CfgExileCustomCode 
 {
 	ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";
+	ExileServer_system_trading_network_purchaseVehicleRequest = "overwrites\exile_server\code\ExileServer_system_trading_network_purchaseVehicleRequest.sqf";
 };
 ```
-
-* 4) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
-* 5) profit
+* 3) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
+* 4) profit
 
 Notice
 ------
@@ -77,9 +80,15 @@ if (!hasInterface || isServer) exitWith {};
 ```
 
 #### ADD-IN:
-* 1) Copy `acd_sz.pbo` to exile server addon folder `@ExileServer\addons`
-* 2) Copy folders `custom` and `overwrites` from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo
-* 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo and add row: `ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";`
+* 1) Copy folders `custom` and `overwrites` from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo
+* 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo to look like this: 
+```java
+class CfgExileCustomCode 
+{
+	ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";
+	ExileServer_system_trading_network_purchaseVehicleRequest = "overwrites\exile_server\code\ExileServer_system_trading_network_purchaseVehicleRequest.sqf";
+};
+```
 * 4) Remove default sensors and markers by deleting those sections from mission.sqm
 ```java
 class Sensors {};

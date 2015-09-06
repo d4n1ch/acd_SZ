@@ -4,68 +4,12 @@
 	by d4n1ch
 	mailto: d.e@acd.su
 */
-
+private ["_objs"];
 if (!acd_SZ_EAST_Almyra) exitWith {
 	diag_log format ["### ACD: SAFE ZONE IS OFF: NO PROPS WILL BE BUILT: acd_SZ_EAST_Almyra = %1 ###", acd_SZ_EAST_Almyra];
 };
 diag_log format ["### ACD: SAFE ZONE: LOADING: acd_SZ_EAST_Almyra_props ###"];
-acd_fnc_buildTerminal = {
-    private ["_fnc","_trigger","_center","_side"];
-    _fnc = {
-        {
-            _trigger = createTrigger [
-                "EmptyDetector",
-                _side modelToWorld _x
-            ];
-            _trigger setVariable ["parent", _side];
-            _trigger setTriggerArea [5, 5, 0, false];
-            _trigger setTriggerActivation ["ANY", "PRESENT", true];
-            _trigger setTriggerStatements [
-                "this",
-                format [
-                    "
-                        (thisTrigger getVariable 'parent')
-                            animate ['Door_%1A_move', 1];
-                        (thisTrigger getVariable 'parent') 
-                            animate ['Door_%1B_move', 1];
-                    ", _forEachIndex + 7
-                ],
-                format [
-                    "
-                        (thisTrigger getVariable 'parent') 
-                            animate ['Door_%1A_move', 0];
-                        (thisTrigger getVariable 'parent') 
-                            animate ['Door_%1B_move', 0];
-                    ", _forEachIndex + 7
-                ]
-            ];
-            _side setVariable [format [
-                "bis_disabled_Door_%1", 
-                _forEachIndex + 7
-            ], 1, true];
-        } forEach _this;
-    };
-    _center = "Land_Airport_center_F" createVehicleLocal [0,0,0];
-    _center  setDir (_this select 0);
-    _center  setPosATL (_this select 1);
-    _side = "Land_Airport_left_F" createVehicleLocal [0,0,0];
-    _side attachTo [_center, [19.6722,-4.61768,4.04246]];
-    detach _side;
-    [
-        [-0.62,-15.16,-7],
-        [-0.62,15.16,-7]
-    ] call _fnc;
-    _side = "Land_Airport_right_F" createVehicleLocal [0,0,0];
-    _side attachTo [_center, [-19.5177,-4.61768,4.04246]];
-    detach _side;
-    [
-        [0.62,-15.16,-7],
-        [0.62,15.16,-7]
-    ] call _fnc;
-};
-[280,[23188.6,18726.4,0.012877]] call acd_fnc_buildTerminal;
 
-private ["_objs"];
 _objs = [
 	["Exile_Sign_TraderCity",[23206.3,18723.4,0.062675],280,[[-0.984808,0.173649,0],[0,0,1]],false],
 	["Exile_Sign_TraderCity",[23172.7,18729.3,4.34578],100.909,[[0.981929,-0.189251,0],[0,-0,1]],false],
@@ -159,50 +103,5 @@ if (acd_SZ_EAST_Almyra_Vehicle_Customs_Trader) then {
 	_objs = _objs + [["Exile_Sign_VehicleCustoms",[23200.9,18680.6,0.197726],280,[[-0.984808,0.173649,0],[0,0,1]],false]];
 };
 
-{
-	private ["_obj"];
-	if (acd_debug) then {
-	diag_log format ["### _x = %1 ###",_x];
-	};
-	_obj = (_x select 0) createVehicleLocal [0,0,0];
-	if (_x select 4) then {
-		_obj setDir (_x select 2);
-		_obj setPos (_x select 1);
-	} else {
-		_obj setPosATL (_x select 1);
-		_obj setVectorDirAndUp (_x select 3);
-	};
-	_obj enableSimulation false;
-	if (acd_debug) then {
-	diag_log format ["### _obj = %1 ###",_obj];
-	};
-} foreach _objs;
-if (acd_SZ_EAST_Almyra_IS_SAFE) then {
-/*
-	SZ Marker
-*/
-acd_SZ_EAST_Almyra_marker = createMarker ["East_TraderCityMarker", [23157.5,18726.7,0.00143886]];
-"East_TraderCityMarker" setMarkerShape "ELLIPSE";
-"East_TraderCityMarker" setMarkerSize [200,200];
-"East_TraderCityMarker" setMarkerColor "ColorBlue";
-"East_TraderCityMarker" setMarkerBrush "SolidBorder";
-"East_TraderCityMarker" setMarkerAlpha 1;
-"East_TraderCityMarker" setMarkerText "BmGJ Trader City";
-/*
-	SZ Sensor
-*/
-ExileTrader = createTrigger ["EmptyDetector",[23157.5,18726.7,0.00143886]];
-ExileTrader setTriggerArea [300,300,55,true];
-ExileTrader setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
-ExileTrader setTriggerActivation ["ANY","PRESENT",true];
-} else {
-/*
-	Trading Outpost Marker
-*/
-acd_SZ_EAST_Almyra_marker = createMarker ["East_TraderCityMarker",[23157.5,18726.7,0.00143886]];
-"East_TraderCityMarker" setMarkerShape "ICON";
-"East_TraderCityMarker" setMarkerType "MinefieldAP";
-"East_TraderCityMarker" setMarkerSize [0.60000002,0.60000002];
-"East_TraderCityMarker" setMarkerColor "ColorBlack";
-"East_TraderCityMarker" setMarkerText "Black market";	
-};	
+[280,[23188.6,18726.4,0.012877]] call acd_fnc_buildTerminal;
+[_objs] call acd_fnc_buildProps;

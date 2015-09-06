@@ -4,7 +4,7 @@
 	by d4n1ch
 	mailto: d.e@acd.su
 */
-
+private ["_objects"];
 if (!acd_SZ_CENTRAL_Default) exitWith {
 	diag_log format ["### ACD: SAFE ZONE IS OFF: NO PROPS WILL BE BUILT: acd_SZ_CENTRAL_Default = %1 ###", acd_SZ_CENTRAL_Default];
 };
@@ -228,46 +228,4 @@ if (acd_SZ_CENTRAL_Default_Vehicle_Customs_Trader) then {
 	_objects = _objects + [["Exile_Sign_VehicleCustoms",[14619.4,16888.2,-0.0942593],91.8182,0,0,false]];
 };
 
-{
-    private ["_object"];
-	if (acd_debug) then {
-	diag_log format ["### _x = %1 ###",_x];
-	};
-    _object = (_x select 0) createVehicleLocal [0,0,0];
-    _object setDir (_x select 2);
-    _object setPosATL (_x select 1);
-    _object enableSimulation false; // :)
-	if (acd_debug) then {
-	diag_log format ["### _object = %1 ###",_object];
-	};
-}
-forEach _objects;
-if (acd_SZ_CENTRAL_Default_IS_SAFE) then {
-/*
-	SZ Marker
-*/
-acd_SZ_CENTRAL_Default_marker = createMarker ["TraderCityMarker",[14600,16797.199,22.35]];
-"TraderCityMarker" setMarkerShape "ELLIPSE";
-"TraderCityMarker" setMarkerSize [175,175];
-"TraderCityMarker" setMarkerBrush "SolidBorder";
-"TraderCityMarker" setMarkerColor "ColorBlue";
-"TraderCityMarker" setMarkerAlpha 1;
-"TraderCityMarker" setMarkerText "Mafia Trader City";
-/*
-	SZ Sensor
-*/
-ExileTrader = createTrigger ["EmptyDetector",[14600,16797.199,22.35]];
-ExileTrader setTriggerArea [175,175,0,true];
-ExileTrader setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
-ExileTrader setTriggerActivation ["ANY","PRESENT",true];
-} else {
-/*
-	Trading Outpost Marker
-*/
-acd_SZ_CENTRAL_Default_marker = createMarker ["TraderCityMarker",[14600,16797.199,22.35]];
-"TraderCityMarker" setMarkerShape "ICON";
-"TraderCityMarker" setMarkerType "MinefieldAP";
-"TraderCityMarker" setMarkerSize [0.60000002,0.60000002];
-"TraderCityMarker" setMarkerColor "ColorBlack";
-"TraderCityMarker" setMarkerText "Black market";	
-};
+[_objects] call acd_fnc_buildPropsDefault;

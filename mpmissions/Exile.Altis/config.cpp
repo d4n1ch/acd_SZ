@@ -1566,6 +1566,7 @@ class CfgExileArsenal
 class CfgExileCustomCode 
 {
 	ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";
+	ExileServer_system_trading_network_purchaseVehicleRequest = "overwrites\exile_server\code\ExileServer_system_trading_network_purchaseVehicleRequest.sqf";
 };
 class CfgExileMusic
 {

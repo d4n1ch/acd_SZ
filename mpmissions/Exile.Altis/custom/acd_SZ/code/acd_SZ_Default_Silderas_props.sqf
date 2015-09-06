@@ -112,47 +112,4 @@ if (acd_SZ_Default_Silderas_Boat_Trader) then {
 	_objects = _objects + [["Exile_Sign_Boat_Small",[23333.4,24189.1,-0.633072],293.636,0,0,false]];	
 };
 
-{
-    private ["_object"];
-	if (acd_debug) then {
-	diag_log format ["### _x = %1 ###",_x];
-	};
-    _object = (_x select 0) createVehicleLocal [0,0,0];
-    _object setDir (_x select 2);
-    _object setPosATL (_x select 1);
-    _object enableSimulation false; // :)
-	if (acd_debug) then {
-	diag_log format ["### _object = %1 ###",_object];
-	};
-}
-forEach _objects;
-if (acd_SZ_Default_Silderas_IS_SAFE) then {
-/*
-	SZ Marker
-*/
-acd_SZ_Default_Silderas_marker = createMarker ["TraderCitySilderasMarker",[23334.6,24188.9,4.0095601]];
-"TraderCitySilderasMarker" setMarkerShape "ELLIPSE";
-"TraderCitySilderasMarker" setMarkerSize [175,175];
-"TraderCitySilderasMarker" setMarkerBrush "SolidBorder";
-"TraderCitySilderasMarker" setMarkerColor "ColorBlue";
-"TraderCitySilderasMarker" setMarkerAlpha 1;
-"TraderCitySilderasMarker" setMarkerText "Mafia Trader City";
-/*
-	SZ Sensor
-*/
-acd_SZ_Default_Silderas_sensor = createTrigger ["EmptyDetector",[23334.6,24188.9,4.0095601]];
-acd_SZ_Default_Silderas_sensor setTriggerArea [175,175,0,true];
-acd_SZ_Default_Silderas_sensor setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
-acd_SZ_Default_Silderas_sensor setTriggerActivation ["ANY","PRESENT",true];
-
-} else {
-/*
-	Trading Outpost Marker
-*/
-acd_SZ_Default_Silderas_marker = createMarker ["TraderCitySilderasMarker",[23334.6,24188.9,4.0095601]];
-"TraderCitySilderasMarker" setMarkerShape "ICON";
-"TraderCitySilderasMarker" setMarkerType "MinefieldAP";
-"TraderCitySilderasMarker" setMarkerSize [0.60000002,0.60000002];
-"TraderCitySilderasMarker" setMarkerColor "ColorBlack";
-"TraderCitySilderasMarker" setMarkerText "Black market";	
-};
+[_objects] call acd_fnc_buildPropsDefault;

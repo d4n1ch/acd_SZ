@@ -117,46 +117,4 @@ if (acd_SZ_Default_Fotia_Boat_Trader) then {
 	_objects = _objects + [["Exile_Sign_Boat_Small",[2971.94,18194.1,2.02326],249.546,0,0,false]];
 };
 
-{
-    private ["_object"];
-	if (acd_debug) then {
-	diag_log format ["### _x = %1 ###",_x];
-	};
-    _object = (_x select 0) createVehicleLocal [0,0,0];
-    _object setDir (_x select 2);
-    _object setPosATL (_x select 1);
-    _object enableSimulation false; // :)
-	if (acd_debug) then {
-	diag_log format ["### _object = %1 ###",_object];
-	};
-}
-forEach _objects;
-if (acd_SZ_Default_Fotia_IS_SAFE) then {
-/*
-	SZ Marker
-*/
-acd_SZ_Default_Fotia_marker = createMarker ["TraderCityFotiaMarker",[2998.0601,18175.5,3.7756]];
-"TraderCityFotiaMarker" setMarkerShape "ELLIPSE";
-"TraderCityFotiaMarker" setMarkerSize [175,175];
-"TraderCityFotiaMarker" setMarkerBrush "SolidBorder";
-"TraderCityFotiaMarker" setMarkerColor "ColorBlue";
-"TraderCityFotiaMarker" setMarkerAlpha 1;
-"TraderCityFotiaMarker" setMarkerText "Mafia Trader City";
-/*
-	SZ Sensor
-*/
-acd_SZ_Default_Fotia_sensor = createTrigger ["EmptyDetector",[2998.0601,18175.5,3.7756]];
-acd_SZ_Default_Fotia_sensor setTriggerArea [175,175,0,true];
-acd_SZ_Default_Fotia_sensor setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
-acd_SZ_Default_Fotia_sensor setTriggerActivation ["ANY","PRESENT",true];
-} else {
-/*
-	Trading Outpost Marker
-*/
-acd_SZ_Default_Fotia_marker = createMarker ["TraderCityFotiaMarker",[2998.0601,18175.5,3.7756]];
-"TraderCityFotiaMarker" setMarkerShape "ICON";
-"TraderCityFotiaMarker" setMarkerType "MinefieldAP";
-"TraderCityFotiaMarker" setMarkerSize [0.60000002,0.60000002];
-"TraderCityFotiaMarker" setMarkerColor "ColorBlack";
-"TraderCityFotiaMarker" setMarkerText "Black market";	
-};
+[_objects] call acd_fnc_buildPropsDefault;

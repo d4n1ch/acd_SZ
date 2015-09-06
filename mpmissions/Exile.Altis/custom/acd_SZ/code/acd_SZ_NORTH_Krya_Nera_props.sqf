@@ -9,61 +9,6 @@ if (!acd_SZ_NORTH_Krya_Nera) exitWith {
 	diag_log format ["### ACD: SAFE ZONE IS OFF: NO PROPS WILL BE BUILT: acd_SZ_NORTH_Krya_Nera = %1 ###", acd_SZ_NORTH_Krya_Nera];
 };
 diag_log format ["### ACD: SAFE ZONE: LOADING: acd_SZ_NORTH_Krya_Nera_props ###"];
-acd_fnc_buildTerminal = {
-    private ["_fnc","_trigger","_center","_side"];
-    _fnc = {
-        {
-            _trigger = createTrigger [
-                "EmptyDetector",
-                _side modelToWorld _x
-            ];
-            _trigger setVariable ["parent", _side];
-            _trigger setTriggerArea [5, 5, 0, false];
-            _trigger setTriggerActivation ["ANY", "PRESENT", true];
-            _trigger setTriggerStatements [
-                "this",
-                format [
-                    "
-                        (thisTrigger getVariable 'parent')
-                            animate ['Door_%1A_move', 1];
-                        (thisTrigger getVariable 'parent') 
-                            animate ['Door_%1B_move', 1];
-                    ", _forEachIndex + 7
-                ],
-                format [
-                    "
-                        (thisTrigger getVariable 'parent') 
-                            animate ['Door_%1A_move', 0];
-                        (thisTrigger getVariable 'parent') 
-                            animate ['Door_%1B_move', 0];
-                    ", _forEachIndex + 7
-                ]
-            ];
-            _side setVariable [format [
-                "bis_disabled_Door_%1", 
-                _forEachIndex + 7
-            ], 1, true];
-        } forEach _this;
-    };
-    _center = "Land_Airport_center_F" createVehicleLocal [0,0,0];
-    _center  setDir (_this select 0);
-    _center  setPosATL (_this select 1);
-    _side = "Land_Airport_left_F" createVehicleLocal [0,0,0];
-    _side attachTo [_center, [19.6722,-4.61768,4.04246]];
-    detach _side;
-    [
-        [-0.62,-15.16,-7],
-        [-0.62,15.16,-7]
-    ] call _fnc;
-    _side = "Land_Airport_right_F" createVehicleLocal [0,0,0];
-    _side attachTo [_center, [-19.5177,-4.61768,4.04246]];
-    detach _side;
-    [
-        [0.62,-15.16,-7],
-        [0.62,15.16,-7]
-    ] call _fnc;
-};
-[325,[9215.37,21528.2,0.28]] call acd_fnc_buildTerminal;
 
 private ["_objs"];
 _objs = [
@@ -270,50 +215,5 @@ if (acd_SZ_NORTH_Krya_Nera_Vehicle_Customs_Trader) then {
 	_objs = _objs + [["Exile_Sign_VehicleCustoms",[9188.03,21649.5,-0.0942593],323.636,[[-0.592913,0.805266,0],[0,0,1]],false]];
 };
 
-{
-	private ["_obj"];
-	if (acd_debug) then {
-	diag_log format ["### _x = %1 ###",_x];
-	};
-	_obj = (_x select 0) createVehicleLocal [0,0,0];
-	if (_x select 4) then {
-		_obj setDir (_x select 2);
-		_obj setPos (_x select 1);
-	} else {
-		_obj setPosATL (_x select 1);
-		_obj setVectorDirAndUp (_x select 3);
-	};
-	_obj enableSimulation false;
-	if (acd_debug) then {
-	diag_log format ["### _obj = %1 ###",_obj];
-	};
-} foreach _objs;
-if (acd_SZ_NORTH_Krya_Nera_IS_SAFE) then {
-/*
-	SZ Marker
-*/
-acd_SZ_NORTH_Krya_Nera_marker = createMarker ["North_TraderCityMarker", [9192.48,21519.3,16.9193]];
-"North_TraderCityMarker" setMarkerShape "ELLIPSE";
-"North_TraderCityMarker" setMarkerSize [200,200];
-"North_TraderCityMarker" setMarkerColor "ColorBlue";
-"North_TraderCityMarker" setMarkerBrush "SolidBorder";
-"North_TraderCityMarker" setMarkerAlpha 1;
-"North_TraderCityMarker" setMarkerText "BmGJ Trader City";
-/*
-	SZ Sensor
-*/
-ExileTrader = createTrigger ["EmptyDetector",[9192.48,21519.3,16.9193]];
-ExileTrader setTriggerArea [220,300,55,true];
-ExileTrader setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
-ExileTrader setTriggerActivation ["ANY","PRESENT",true];
-} else {
-/*
-	Trading Outpost Marker
-*/
-acd_SZ_NORTH_Krya_Nera_marker = createMarker ["North_TraderCityMarker",[9192.48,21519.3,16.9193]];
-"North_TraderCityMarker" setMarkerShape "ICON";
-"North_TraderCityMarker" setMarkerType "MinefieldAP";
-"North_TraderCityMarker" setMarkerSize [0.60000002,0.60000002];
-"North_TraderCityMarker" setMarkerColor "ColorBlack";
-"North_TraderCityMarker" setMarkerText "Black market";	
-};	
+[325,[9215.37,21528.2,0.28]] call acd_fnc_buildTerminal;
+[_objs] call acd_fnc_buildProps;
