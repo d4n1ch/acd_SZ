@@ -13,7 +13,7 @@ if (!isNil "acd_sz_config_loaded") then {
 };
 if (!isNil "acd_sz_config_loaded") exitWith {};
 diag_log format ["### ACD: acd_sz_config.sqf: initialize configuration ###"];
-acd_debug = false;
+acd_debug = true;
 /*#####################################################################################################################################*/
 acd_SZ_Unlock_vehicles_in_SZ_upon_restart = true; /* OPTIONAL - (will work only with modified ExileServer_object_vehicle_database_load.sqf) */
 acd_SZ_Disable_Lifting_if_vehicle_locked = true; /* OPTIONAL - (will work only with modified ExileServer_object_vehicle_database_load.sqf) */
@@ -211,20 +211,20 @@ diag_log format ["### ACD: acd_sz_config.sqf: configuration successfully loaded 
 if(isNil("acd_fnc_enabled_sz_list"))then{acd_fnc_enabled_sz_list = compile preprocessFile "custom\acd_sz\functions\acd_fnc_enabled_sz_list.sqf";};
 if(isNil("acd_fnc_sz_data"))then{acd_fnc_sz_data = compile preprocessFile "custom\acd_sz\functions\acd_fnc_sz_data.sqf";};
 if(isNil("acd_fnc_requestPlayerPositionInSZ"))then{acd_fnc_requestPlayerPositionInSZ = compile preprocessFile "custom\acd_sz\functions\acd_fnc_requestPlayerPositionInSZ.sqf";};
-if(isNil("acd_fnc_findSafeVehiclePos"))then{acd_fnc_findSafeVehiclePos = compile preprocessFile "custom\acd_sz\functions\acd_fnc_findSafeVehiclePos.sqf";};
+if(isNil("acd_fnc_findSafePosAnyVehicle"))then{acd_fnc_findSafePosAnyVehicle = compile preprocessFile "custom\acd_sz\functions\acd_fnc_findSafePosAnyVehicle.sqf";};
 if(isNil("acd_fnc_buildTerminal"))then{acd_fnc_buildTerminal = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildTerminal.sqf";};
 //if(isNil("acd_fnc_createSensorsAndMarkers"))then{acd_fnc_createSensorsAndMarkers = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createSensorsAndMarkers.sqf";};
 if(isNil("acd_fnc_buildProps"))then{acd_fnc_buildProps = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildProps.sqf";};
 if(isNil("acd_fnc_buildPropsDefault"))then{acd_fnc_buildPropsDefault = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildPropsDefault.sqf";};
 if(isNil("acd_fnc_precompileProps"))then{acd_fnc_precompileProps = compile preprocessFile "custom\acd_sz\functions\acd_fnc_precompileProps.sqf";};
 if(isNil("acd_fnc_precompileTraders"))then{acd_fnc_precompileTraders = compile preprocessFile "custom\acd_sz\functions\acd_fnc_precompileTraders.sqf";};
-if(isNil("exileserverislocked"))then{exileserverislocked = false;};
 if(isNil("acd_fnc_createSensors"))then{acd_fnc_createSensors = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createSensors.sqf";};
 if(isNil("acd_fnc_createMarkers"))then{acd_fnc_createMarkers = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createMarkers.sqf";};
+if(isNil("acd_fnc_createDummyVehicle"))then{acd_fnc_createDummyVehicle = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createDummyVehicle.sqf";};
+if(isNil("exileserverislocked"))then{exileserverislocked = false;};
 /*#####################################################################################################################################*/
 call acd_fnc_enabled_sz_list;
 call acd_fnc_sz_data;
-//call acd_fnc_createSensorsAndMarkers;
 call acd_fnc_createSensors;
 call acd_fnc_createMarkers;
 acd_sz_config_loaded = true;

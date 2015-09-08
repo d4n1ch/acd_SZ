@@ -11,7 +11,7 @@
 	mailto:d.e@acd.su
  */
  
-private["_sessionID","_parameters","_vehicleClass","_pinCode","_playerObject","_salesPrice","_playerMoney","_position","_position_alt","_vehicleObject","_position2d","_offset","_responseCode","_acd_sz_arr"];
+private["_sessionID","_parameters","_vehicleClass","_pinCode","_playerObject","_salesPrice","_playerMoney","_position","_position_alt","_vehicleObject","_position2d","_offset","_responseCode","_acd_sz_arr","_positionD"];
 _sessionID = _this select 0;
 _parameters = _this select 1;
 _vehicleClass = _parameters select 0;
@@ -61,13 +61,18 @@ try
 	{
 		if (_vehicleClass isKindOf "Air") then 
 		{
-			_acd_sz_arr = [_playerObject,_sessionID] call acd_fnc_findSafeVehiclePos;
+			_acd_sz_arr = [_playerObject,_sessionID,_vehicleClass] call acd_fnc_findSafePosAnyVehicle;
 			_acd_isAirSZ = _acd_sz_arr select 0;
 			if(_acd_isAirSZ)then{
 				_SZ_case = 1;	
 				_position2d = _acd_sz_arr select 1;
 				_position_alt = _acd_sz_arr select 2;
+				_positionD = [_position2d,_vehicleClass] call acd_fnc_createDummyVehicle;
+				if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: RETURNED: (%1)  ###",_positionD];};
+				if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: _position2d = (%1)  ###",_position2d];};
+				
 			}else{
+				throw 13; // code below is default
 				_position2d = 
 				[
 					(getPosATL _playerObject), 
@@ -83,6 +88,7 @@ try
 		}
 		else 
 		{
+			// vehicle is not AIR or SHIP
 			_position2d = 
 			[
 			    (getPosATL _playerObject), 
@@ -94,9 +100,25 @@ try
 			    0                   
 			]
 			call BIS_fnc_findSafePos;
+
+			_acd_sz_arr = [_playerObject,_sessionID,_vehicleClass] call acd_fnc_findSafePosAnyVehicle;
+			_SZ_case = 1;	
+			_position_found = _acd_sz_arr select 0;
+			if(_position_found)then{
+			_position2d = _acd_sz_arr select 1;
+			_position_alt = _acd_sz_arr select 2;
+			_positionD = [_position2d,_vehicleClass] call acd_fnc_createDummyVehicle;
+			}else{
+				if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: throw 13 POSITION NOT FOUND ###",_positionD];};
+				throw 13;
+			};
+			if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: RETURNED: (%1)  ###",_positionD];};
+			if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: _position2d = (%1)  ###",_position2d];};
+			//
 		};
 		if(count _position2d isEqualTo 3)then
 		{
+			if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: (count _position2d isEqualTo 3) throw 13 _position2d = %1  ###",_position2d];};
 			throw 13;
 		};
 		
@@ -115,20 +137,15 @@ try
 			case 1:
 				{	
 					if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: _position2d = %1 ###",_position2d];};
-					_vehicleObject = [_vehicleClass, [0,0,1000], (random 360), true, _pinCode] call ExileServer_object_vehicle_createPersistentVehicle;
 					_position_vehicleObject = (getPosATL _vehicleObject);
 					if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: Vehicle is @(%1) ###",_position_vehicleObject];};
-					_vehicleObject setDamage 0;
-					if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: Create dummy vehicle @(%1) ###",_position2d];};
-					_veh = _vehicleClass createVehicle _position2d;
-					if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: Dummy vehicle is @(%1) ###",(getPosATL _veh)];};
-					_position2d = (getPosATL _veh);
-					if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: Delete dummy vehicle %1 ###",_veh];};
-					deleteVehicle _veh;
-					_vehicleObject setPosATL _position2d;
-					if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: Vehicle TP to _position2d = %1  ###",_position2d];};
+					_vehicleObject setDamage 0;					
+					_vehicleObject setPosATL _positionD;
+					if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: Vehicle TP to _positionD = %1  ###",_positionD];};
+					_position2d = _positionD;
 					if(count _position2d < 3)then
 					{
+						if (acd_debug) then {diag_log format ["### ACD: ExileServer_system_trading_network_purchaseVehicleRequest.sqf: (count _position2d < 3) throw 13 _position2d = %1  ###",_position2d];};
 						throw 13;
 					};
 				};
@@ -138,7 +155,7 @@ try
 	_vehicleObject setVariable ["ExileIsLocked",0];
 	_vehicleObject lock 0;
 	_vehicleObject allowDamage false;
-	_vehicleObject enableSimulation true;
+	//_vehicleObject enableSimulation true;
 	_vehicleObject removeAllEventHandlers "HandleDamage";
 	_vehicleObject call ExileServer_object_vehicle_database_insert;
 	_vehicleObject call ExileServer_object_vehicle_database_update;
