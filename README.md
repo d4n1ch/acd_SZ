@@ -7,7 +7,7 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.4.4
+* 0.4.5
 
 @Exile Version
 ---------------
@@ -38,6 +38,10 @@ Changelog:
 ### 0.4.4
 * Fixed issue with AIR vehicles spawned midair 
 * Added array with predefined positions for Terminal SZ
+
+### 0.4.5
+* Fixed for a fix (vehicle purchase error: 13)
+* Fixed vehicles spawn altitude
 
 Tech
 ----
