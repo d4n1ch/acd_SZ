@@ -7,7 +7,7 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.4.3
+* 0.4.4
 
 @Exile Version
 ---------------
