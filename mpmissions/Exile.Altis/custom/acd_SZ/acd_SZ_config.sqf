@@ -13,7 +13,7 @@ if (!isNil "acd_sz_config_loaded") then {
 };
 if (!isNil "acd_sz_config_loaded") exitWith {};
 diag_log format ["### ACD: acd_sz_config.sqf: initialize configuration ###"];
-acd_debug = true;
+acd_debug = false;
 /*#####################################################################################################################################*/
 acd_SZ_Unlock_vehicles_in_SZ_upon_restart = true; /* OPTIONAL - (will work only with modified ExileServer_object_vehicle_database_load.sqf) */
 acd_SZ_Disable_Lifting_if_vehicle_locked = true; /* OPTIONAL - (will work only with modified ExileServer_object_vehicle_database_load.sqf) */
