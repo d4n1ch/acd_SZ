@@ -35,6 +35,10 @@ Changelog:
 * ExileServer code overwrite ExileServer_system_trading_network_purchaseVehicleRequest.sqf added to fix "Failed to purchase vehicle: 13" when purchasing air vehicle
 * Ability to configure up to 5 custom SPAWN locations
 
+### 0.4.4
+* Fixed issue with AIR vehicles spawned midair 
+* Added array with predefined positions for Terminal SZ
+
 Tech
 ----
 
