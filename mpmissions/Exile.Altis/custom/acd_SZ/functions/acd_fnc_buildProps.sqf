@@ -10,6 +10,9 @@ _objs = _this select 0;
 	private ["_obj"];
 	//if (acd_debug) then {diag_log format ["### _x = %1 ###",_x];};
 	_obj = (_x select 0) createVehicleLocal [0,0,0];
+	if(acd_sz_replace_textures)then{
+		if((_x select 0) == "Exile_Sign_TraderCity")then{_obj setobjecttexture [0, acd_sz_texture];};
+	};
 	if (_x select 4) then {
 		_obj setDir (_x select 2);
 		_obj setPos (_x select 1);

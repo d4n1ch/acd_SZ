@@ -7,7 +7,7 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.4.5
+* 0.4.6
 
 @Exile Version
 ---------------
@@ -42,6 +42,9 @@ Changelog:
 ### 0.4.5
 * Fixed for a fix (vehicle purchase error: 13)
 * Fixed vehicles spawn altitude
+
+### 0.4.6
+* Added option to replace Trader City texture with 1024x512 jpg file (sample PSD and JPG files included)
 
 Tech
 ----
