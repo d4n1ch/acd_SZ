@@ -7,7 +7,7 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.4.6
+* 0.4.7
 
 @Exile Version
 ---------------
@@ -46,6 +46,9 @@ Changelog:
 ### 0.4.6
 * Added option to replace Trader City texture with 1024x512 jpg file (sample PSD and JPG files included)
 
+### 0.4.7
+* Added option to change SZ/SPAWN search radius for construction (default is 1000)
+
 Tech
 ----
 
@@ -62,6 +65,8 @@ INSTALLATION:
 ```java
 class CfgExileCustomCode 
 {
+	ExileClient_util_world_isSpawnZoneNearby = "overwrites\exile_client\code\ExileClient_util_world_isSpawnZoneNearby.sqf";
+	ExileClient_util_world_isTraderZoneNearby = "overwrites\exile_client\code\ExileClient_util_world_isTraderZoneNearby.sqf";
 	ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";
 	ExileServer_system_trading_network_purchaseVehicleRequest = "overwrites\exile_server\code\ExileServer_system_trading_network_purchaseVehicleRequest.sqf";
 };
@@ -96,6 +101,8 @@ if (!hasInterface || isServer) exitWith {};
 ```java
 class CfgExileCustomCode 
 {
+	ExileClient_util_world_isSpawnZoneNearby = "overwrites\exile_client\code\ExileClient_util_world_isSpawnZoneNearby.sqf";
+	ExileClient_util_world_isTraderZoneNearby = "overwrites\exile_client\code\ExileClient_util_world_isTraderZoneNearby.sqf";
 	ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";
 	ExileServer_system_trading_network_purchaseVehicleRequest = "overwrites\exile_server\code\ExileServer_system_trading_network_purchaseVehicleRequest.sqf";
 };

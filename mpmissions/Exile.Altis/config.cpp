@@ -1565,6 +1565,8 @@ class CfgExileArsenal
 };
 class CfgExileCustomCode 
 {
+	ExileClient_util_world_isSpawnZoneNearby = "overwrites\exile_client\code\ExileClient_util_world_isSpawnZoneNearby.sqf";
+	ExileClient_util_world_isTraderZoneNearby = "overwrites\exile_client\code\ExileClient_util_world_isTraderZoneNearby.sqf";
 	ExileServer_object_vehicle_database_load = "overwrites\exile_server\code\ExileServer_object_vehicle_database_load.sqf";
 	ExileServer_system_trading_network_purchaseVehicleRequest = "overwrites\exile_server\code\ExileServer_system_trading_network_purchaseVehicleRequest.sqf";
 };
