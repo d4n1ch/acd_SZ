@@ -12,7 +12,7 @@
  
 private["_position","_radius","_isNearby"];
 _position = _this;
-_radius = 1000
+_radius = 1000;
 if(acd_sz_construction_radius_control)then{_radius = acd_sz_isSpawnZoneNearby_search_radius;};
 _isNearby = false;
 {
