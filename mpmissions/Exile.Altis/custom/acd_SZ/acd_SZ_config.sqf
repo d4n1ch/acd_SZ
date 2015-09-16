@@ -13,7 +13,7 @@ if (!isNil "acd_sz_config_loaded") then {
 };
 if (!isNil "acd_sz_config_loaded") exitWith {};
 diag_log format ["### ACD: acd_sz_config.sqf: initialize configuration ###"];
-acd_debug = true;
+acd_debug = false;
 /*#####################################################################################################################################*/
 acd_sz_replace_textures = true;
 acd_sz_texture = "custom\acd_SZ\images\acd_sz_sign.jpg";
@@ -24,6 +24,7 @@ acd_SZ_Unlock_vehicles_in_SZ_upon_restart = true; /* OPTIONAL - (will work only 
 acd_SZ_Disable_Lifting_if_vehicle_locked = true; /* OPTIONAL - (will work only with modified ExileServer_object_vehicle_database_load.sqf) */
 acd_SZ_Repair_vehicles_upon_restart = false; /* OPTIONAL - (will work only with modified ExileServer_object_vehicle_database_load.sqf) */
 acd_SZ_Refuel_vehicles_upon_restart = false; /* OPTIONAL - (will work only with modified ExileServer_object_vehicle_database_load.sqf) */
+acd_sz_show_real_borders = false; /* for debug purposes */
 /*#######################################################################################################################################
  CENTRAL AIRFIELD DEFAULT SAFE ZONE
 #######################################################################################################################################*/
