@@ -7,7 +7,7 @@
 if (!acd_SZ_NORTH_Krya_Nera) exitWith {
 	diag_log format ["### ACD: SAFE ZONE IS OFF: NO TRADERS WILL SPAWN: acd_SZ_NORTH_Krya_Nera = %1 ###", acd_SZ_NORTH_Krya_Nera];
 };
-
+[325,[9215.37,21528.2,0.28]] call acd_fnc_buildTerminal;
 if (acd_SZ_NORTH_Krya_Nera_Hardware_Trader) then {
 	///////////////////////////////////////////////////////////////////////////
 	// Hardware Trader

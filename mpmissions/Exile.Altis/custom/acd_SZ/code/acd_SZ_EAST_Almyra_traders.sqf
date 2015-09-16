@@ -7,7 +7,7 @@
 if (!acd_SZ_EAST_Almyra) exitWith {
 	diag_log format ["### ACD: SAFE ZONE IS OFF: NO TRADERS WILL SPAWN: acd_SZ_EAST_Almyra = %1 ###", acd_SZ_EAST_Almyra];
 };
-
+[280,[23188.6,18726.4,0.012877]] call acd_fnc_buildTerminal;
 if (acd_SZ_EAST_Almyra_Hardware_Trader) then {
 	///////////////////////////////////////////////////////////////////////////
 	// Hardware Trader

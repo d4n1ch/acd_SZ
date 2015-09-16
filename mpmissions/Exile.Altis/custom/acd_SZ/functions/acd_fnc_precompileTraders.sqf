@@ -5,6 +5,7 @@
 	mailto: d.e@acd.su
 	
 */
+if (isNil "acd_sz_config_loaded") exitWith {diag_log format ["### ACD: acd_fnc_precompileTraders: ALARMA: acd_sz_config_loaded isNil ###"];};
 private["_sz_list","_debug_local"];
 if(acd_debug)then{_debug_local = true;}else{_debug_local = false;};
 //_debug_local = false;

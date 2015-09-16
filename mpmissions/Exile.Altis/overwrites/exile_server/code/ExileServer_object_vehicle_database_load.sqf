@@ -33,10 +33,6 @@ if(_lock isEqualTo -1)then
 	};
 	if (!isNil "acd_SZ_Unlock_vehicles_in_SZ_upon_restart") then {
 		if (acd_SZ_Unlock_vehicles_in_SZ_upon_restart) then {
-			if (acd_debug) then {
-				diag_log format ["### ACD: DEBUG: ExileServer_object_vehicle_database_load.sqf: _vehicleObject = %1 IS LOCKED ###", _vehicleObject];
-				diag_log format ["### ACD: DEBUG: ExileServer_object_vehicle_database_load.sqf: _position = %1 ###", _position];
-			};
 			if (!isNil "acd_SZ_positions") then {
 				{	
 					if ((_position distance (_x select 0)) < (_x select 1)) then {

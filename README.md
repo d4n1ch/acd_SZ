@@ -7,11 +7,11 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.4.7
+* 0.5
 
 @Exile Version
 ---------------
-* 0.9.19 "BANANA"
+* 0.9.20b "Tomato"
 
 TODO:
 -----
@@ -49,6 +49,11 @@ Changelog:
 ### 0.4.7
 * Added option to change SZ/SPAWN search radius for construction (default is 1000)
 
+### 0.5
+* File structure changed
+* Server side addon is back
+* Markers adjusted
+
 Tech
 ----
 
@@ -60,8 +65,9 @@ This release uses @Exile project to work:
 INSTALLATION:
 ----
 #### CLEAN:
-* 1) Copy folders `custom` and `overwrites` from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo
-* 2) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo to look like this: 
+* 1) Copy `acd_sz.pbo` to `@ExileServer\addons` folder
+* 2) Copy folders `custom` and `overwrites` from `mpmissions\Exile.Altis` to your Exile.Altis mission pbo
+* 3) Edit section `CfgExileCustomCode` inside `config.cpp` of your Exile.Altis mission pbo to look like this: 
 ```java
 class CfgExileCustomCode 
 {
@@ -71,8 +77,15 @@ class CfgExileCustomCode
 	ExileServer_system_trading_network_purchaseVehicleRequest = "overwrites\exile_server\code\ExileServer_system_trading_network_purchaseVehicleRequest.sqf";
 };
 ```
-* 3) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
-* 4) profit
+* 4) Edit battleye filters or use files included:
+```java
+// scripts.txt
+7 compile !="_isSafe = call compile format[\"%1_IS_SAFE\",_sz_name];"
+// publicvariable.txt
+7 "" !="acd_SZ_enabled_list"
+```
+* 5) Configure acd_SZ_config.sqf and acd_SPAWN_config.sqf to meet your needs.
+* 6) profit
 
 Notice
 ------
@@ -85,14 +98,15 @@ Listed files should look like this:
 
 `initServer.sqf`
 ```
-#include "custom\acd_SZ\acd_SZ_load_props.sqf"
+publicVariable "acd_SZ_enabled_list";
 ```
 
 `initPlayerLocal.sqf`
 ```
 #include "initServer.sqf"
 if (!hasInterface || isServer) exitWith {};
-#include "custom\acd_SZ\acd_SZ_load_traders.sqf"
+call acd_fnc_createSensors;
+call acd_fnc_precompileTraders;
 ```
 
 #### ADD-IN:
@@ -122,13 +136,20 @@ class Markers {};
 //Remove default traders below line:
 if (!hasInterface || isServer) exitWith {};
 //Add line to the end of file
-#include "acd_SZ\acd_SZ_load_traders.sqf"
+call acd_fnc_createSensors;
+call acd_fnc_precompileTraders;
 ```
 * 7) Edit initServer.sqf
 ```java
 //Remove default props 
-//Add line to the end of file
-#include "acd_SZ\acd_SZ_load_props.sqf"
+//Add line to the file top
+publicVariable "acd_SZ_enabled_list";
 ```
-
-* 8) profit
+* 8) Edit battleye filters or use files included:
+```java
+// scripts.txt
+7 compile !="_isSafe = call compile format[\"%1_IS_SAFE\",_sz_name];"
+// publicvariable.txt
+7 "" !="acd_SZ_enabled_list"
+```
+* 9) profit

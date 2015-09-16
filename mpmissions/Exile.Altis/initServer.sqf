@@ -1,1 +1,1 @@
-#include "custom\acd_SZ\acd_SZ_load_props.sqf"
+publicVariable "acd_SZ_enabled_list";

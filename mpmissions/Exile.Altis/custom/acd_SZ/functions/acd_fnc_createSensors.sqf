@@ -13,7 +13,6 @@ if(acd_debug)then{
 	_debug_local = false;
 };
 _debug_local = true;
-//if (!isServer) exitWith {diag_log format ["### ACD: acd_fnc_createSensors: NOT A SERVER ###"];};
 if (!isNil "acd_SZ_enabled_list") then {
 diag_log format ["### ACD: Creating Sensors ###"];
 _sz_names_arr = acd_SZ_enabled_list;
@@ -28,15 +27,13 @@ _sz_names_arr = acd_SZ_enabled_list;
 		/*
 			SZ Sensor
 		*/
-		_sz_sensor_var = format["_%1_Sensor",_sz_name];
 		_sensor_arr = call compile format["%1_triggerArea",_sz_name];
-		
-		_sz_sensor_var = createTrigger ["EmptyDetector",_pos];
-		_sz_sensor_var setTriggerArea _sensor_arr;
-		_sz_sensor_var setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
-		_sz_sensor_var setTriggerActivation ["ANY","PRESENT",true];
-
-		
+		_sz_sensor_var = format["%1_Sensor",_sz_name];
+		call compile format['%1 = createTrigger ["EmptyDetector",_pos];',_sz_sensor_var];
+		_sz_sensor = call compile format["%1",_sz_sensor_var];
+		_sz_sensor setTriggerArea _sensor_arr;
+		_sz_sensor setTriggerStatements ["(vehicle player) in thisList","call ExileClient_object_player_event_onEnterSafezone","call ExileClient_object_player_event_onLeaveSafezone"];
+		_sz_sensor setTriggerActivation ["ANY","PRESENT",true];
 	};
 	
 	

@@ -5,7 +5,7 @@
 	mailto: d.e@acd.su
 */
 diag_log format ["### ACD: acd_SPAWN_config.sqf: initialize configuration ###"];
-if (!isServer) exitWith {diag_log format ["### ACD: acd_SPAWN_config.sqf: NOT A SERVER ###"];};
+//if (!isServer) exitWith {diag_log format ["### ACD: acd_SPAWN_config.sqf: NOT A SERVER ###"];};
 /*#####################################################################################################################################*/
 acd_SPAWN_Kavala = true;
 acd_SPAWN_Kavala_pos = [3874.3601,13280.8,18.125601];
@@ -101,5 +101,4 @@ if (acd_debug) then {
 };
 diag_log format ["### ACD: acd_SPAWN_config.sqf: configuration successfully loaded ###"];
 /*#####################################################################################################################################*/
-if(isNil("acd_SPAWNS"))then{acd_SPAWNS = compile preprocessFile "custom\acd_sz\code\acd_SPAWNS.sqf";};
-call acd_SPAWNS;
+

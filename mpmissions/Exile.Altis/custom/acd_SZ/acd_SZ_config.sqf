@@ -13,7 +13,7 @@ if (!isNil "acd_sz_config_loaded") then {
 };
 if (!isNil "acd_sz_config_loaded") exitWith {};
 diag_log format ["### ACD: acd_sz_config.sqf: initialize configuration ###"];
-acd_debug = false;
+acd_debug = true;
 /*#####################################################################################################################################*/
 acd_sz_replace_textures = true;
 acd_sz_texture = "custom\acd_SZ\images\acd_sz_sign.jpg";
@@ -102,7 +102,7 @@ acd_SZ_NORTH_Krya_Nera_air_vehicle_pos_arr = [[9181.29,21596.4,0.00160122],[9132
 acd_SZ_NORTH_EAST_Molos = true;
 acd_SZ_NORTH_EAST_Molos_IS_SAFE = true;
 acd_SZ_NORTH_EAST_Molos_position = [26833.49,24850.111,21.780668]; /* DO NOT EDIT (you will break things)*/
-acd_SZ_NORTH_EAST_Molos_triggerArea = [220,300,11,true]; /* DO NOT EDIT (you will break things)*/
+acd_SZ_NORTH_EAST_Molos_triggerArea = [220,300,35,true]; /* DO NOT EDIT (you will break things)*/
 acd_SZ_NORTH_EAST_Molos_air_vehicle_pos_arr = [[26851.6,24560.3,0.00139999],[26901.2,24618.7,0.00161171],[26973.1,24699.2,0.00145149],[27053.6,24785.6,0.00141907]];
 /*#####################################################################################################################################*/
 	acd_SZ_NORTH_EAST_Molos_Hardware_Trader = true;
@@ -213,24 +213,20 @@ if (acd_debug) then {
 };
 /*#####################################################################################################################################*/
 diag_log format ["### ACD: acd_sz_config.sqf: configuration successfully loaded ###"];
-if(isNil("acd_fnc_enabled_sz_list"))then{acd_fnc_enabled_sz_list = compile preprocessFile "custom\acd_sz\functions\acd_fnc_enabled_sz_list.sqf";};
-if(isNil("acd_fnc_sz_data"))then{acd_fnc_sz_data = compile preprocessFile "custom\acd_sz\functions\acd_fnc_sz_data.sqf";};
-if(isNil("acd_fnc_requestPlayerPositionInSZ"))then{acd_fnc_requestPlayerPositionInSZ = compile preprocessFile "custom\acd_sz\functions\acd_fnc_requestPlayerPositionInSZ.sqf";};
-if(isNil("acd_fnc_findSafePosAnyVehicle"))then{acd_fnc_findSafePosAnyVehicle = compile preprocessFile "custom\acd_sz\functions\acd_fnc_findSafePosAnyVehicle.sqf";};
 if(isNil("acd_fnc_buildTerminal"))then{acd_fnc_buildTerminal = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildTerminal.sqf";};
-//if(isNil("acd_fnc_createSensorsAndMarkers"))then{acd_fnc_createSensorsAndMarkers = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createSensorsAndMarkers.sqf";};
-if(isNil("acd_fnc_buildProps"))then{acd_fnc_buildProps = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildProps.sqf";};
-if(isNil("acd_fnc_buildPropsDefault"))then{acd_fnc_buildPropsDefault = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildPropsDefault.sqf";};
-if(isNil("acd_fnc_precompileProps"))then{acd_fnc_precompileProps = compile preprocessFile "custom\acd_sz\functions\acd_fnc_precompileProps.sqf";};
-if(isNil("acd_fnc_precompileTraders"))then{acd_fnc_precompileTraders = compile preprocessFile "custom\acd_sz\functions\acd_fnc_precompileTraders.sqf";};
 if(isNil("acd_fnc_createSensors"))then{acd_fnc_createSensors = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createSensors.sqf";};
-if(isNil("acd_fnc_createMarkers"))then{acd_fnc_createMarkers = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createMarkers.sqf";};
-if(isNil("acd_fnc_createDummyVehicle"))then{acd_fnc_createDummyVehicle = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createDummyVehicle.sqf";};
-if(isNil("exileserverislocked"))then{exileserverislocked = false;};
+if(isNil("acd_fnc_precompileTraders"))then{acd_fnc_precompileTraders = compile preprocessFile "custom\acd_sz\functions\acd_fnc_precompileTraders.sqf";};
+//if(isNil("acd_fnc_enabled_sz_list"))then{acd_fnc_enabled_sz_list = compile preprocessFile "custom\acd_sz\functions\acd_fnc_enabled_sz_list.sqf";};
+//if(isNil("acd_fnc_sz_data"))then{acd_fnc_sz_data = compile preprocessFile "custom\acd_sz\functions\acd_fnc_sz_data.sqf";};
+//if(isNil("acd_fnc_requestPlayerPositionInSZ"))then{acd_fnc_requestPlayerPositionInSZ = compile preprocessFile "custom\acd_sz\functions\acd_fnc_requestPlayerPositionInSZ.sqf";};
+//if(isNil("acd_fnc_findSafePosAnyVehicle"))then{acd_fnc_findSafePosAnyVehicle = compile preprocessFile "custom\acd_sz\functions\acd_fnc_findSafePosAnyVehicle.sqf";};
+//if(isNil("acd_fnc_createSensorsAndMarkers"))then{acd_fnc_createSensorsAndMarkers = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createSensorsAndMarkers.sqf";};
+//if(isNil("acd_fnc_buildProps"))then{acd_fnc_buildProps = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildProps.sqf";};
+//if(isNil("acd_fnc_buildPropsDefault"))then{acd_fnc_buildPropsDefault = compile preprocessFile "custom\acd_sz\functions\acd_fnc_buildPropsDefault.sqf";};
+//if(isNil("acd_fnc_precompileProps"))then{acd_fnc_precompileProps = compile preprocessFile "custom\acd_sz\functions\acd_fnc_precompileProps.sqf";};
+
+//if(isNil("acd_fnc_createMarkers"))then{acd_fnc_createMarkers = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createMarkers.sqf";};
+//if(isNil("acd_fnc_createDummyVehicle"))then{acd_fnc_createDummyVehicle = compile preprocessFile "custom\acd_sz\functions\acd_fnc_createDummyVehicle.sqf";};
 /*#####################################################################################################################################*/
-call acd_fnc_enabled_sz_list;
-call acd_fnc_sz_data;
-call acd_fnc_createSensors;
-call acd_fnc_createMarkers;
 acd_sz_config_loaded = true;
 #include "acd_SPAWN_config.sqf"

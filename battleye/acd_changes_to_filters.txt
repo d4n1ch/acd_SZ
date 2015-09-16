@@ -1,0 +1,5 @@
+// scripts.txt
+7 compile !="_isSafe = call compile format[\"%1_IS_SAFE\",_sz_name];"
+
+// publicvariable.txt
+7 "" !="acd_SZ_enabled_list"
