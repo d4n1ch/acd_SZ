@@ -7,7 +7,7 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.5
+* 0.5.0
 
 @Exile Version
 ---------------
@@ -53,6 +53,9 @@ Changelog:
 * File structure changed
 * Server side addon is back
 * Markers adjusted
+
+### 0.5.0
+* Changes in init files for R3F to work
 
 Tech
 ----
