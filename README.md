@@ -7,7 +7,7 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.5.0
+* 0.5.1
 
 @Exile Version
 ---------------
@@ -15,8 +15,7 @@ ACD_SZ Version
 
 TODO:
 -----
-  - Place more props
-  - Add more traders to new default zones
+  - To do to do
   
 Changelog:
 ----------
@@ -57,6 +56,10 @@ Changelog:
 ### 0.5.0
 * Changes in init files for R3F to work
 
+### 0.5.1
+* Let there be light
+* Added fire and water sources to each SZ
+
 Tech
 ----
 
@@ -96,7 +99,7 @@ Listed files should look like this:
 
 `init.sqf`
 ```
-#include "custom\acd_SZ\acd_SZ_config.sqf"
+//your scripts goes here
 ```
 
 `initServer.sqf`
@@ -108,6 +111,7 @@ publicVariable "acd_SZ_enabled_list";
 ```
 #include "initServer.sqf"
 if (!hasInterface || isServer) exitWith {};
+#include "custom\acd_SZ\acd_SZ_config.sqf"
 call acd_fnc_createSensors;
 call acd_fnc_precompileTraders;
 ```
@@ -131,14 +135,14 @@ class Markers {};
 ```
 * 5) Edit init.sqf 
 ```java
-//Add line
-#include "acd_SZ\acd_SZ_config.sqf"
+//your scripts
 ```
 * 6) Edit initPlayerLocal.sqf
 ```java
-//Remove default traders below line:
+//Remove default traders (everything) below line:
 if (!hasInterface || isServer) exitWith {};
-//Add line to the end of file
+//Add this three rows
+#include "acd_SZ\acd_SZ_config.sqf"
 call acd_fnc_createSensors;
 call acd_fnc_precompileTraders;
 ```
