@@ -7,7 +7,7 @@ for Arma 3 @Exile mod
 
 ACD_SZ Version
 --------------
-* 0.5.1
+* 0.5.2
 
 @Exile Version
 ---------------
@@ -59,6 +59,9 @@ Changelog:
 ### 0.5.1
 * Let there be light
 * Added fire and water sources to each SZ
+
+### 0.5.2
+* Fixed issue when "Spawn Zone" vehicles didn't spawned
 
 Tech
 ----
